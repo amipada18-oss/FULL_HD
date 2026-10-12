@@ -128,11 +128,11 @@
                 // Final fallback placeholder if image.gif is also missing
                 const placeholder = "https://placehold.co/1080x1920/111111/ef4444?text=GIF+Not+Found+(image.gif)";
                 img.src = placeholder;
-                bgMirror.src = placeholder;
+                .src = placeholder;
             } else {
                 // If random GIF (e.g., gifs/1.gif) fails, fallback to image.gif
                 img.src = "image.gif";
-                bgMirror.src = "image.gif";
+                .src = "image.gif";
             }
         }
     </script>
