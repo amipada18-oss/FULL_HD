@@ -3,55 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Amar Page - Landing Page</title>
+    <title>9:16 Vertical GIF Landing Page</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        body {
-            background: #111;
-            color: white;
-            font-family: Arial, sans-serif;
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+
+        * {
+            font-family: 'Hind Siliguri', sans-serif;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        /* Ambient glowing background blur effect */
+        .ambient-glow {
+            filter: blur(60px);
+            opacity: 0.35;
+            transform: scale(1.1);
+        }
+
+        /* Minimal sleek glowing buttons */
+        .glow-btn-primary {
+            background: rgba(220, 38, 38, 0.88);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(220, 38, 38, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+            animation: pulse-glow 2.5s infinite;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-btn-primary:hover {
+            background: rgba(239, 68, 68, 0.98);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 6px 28px rgba(239, 68, 68, 0.8), inset 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .glow-btn-primary:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        .glow-btn-secondary {
+            background: rgba(15, 15, 15, 0.75);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6), inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glow-btn-secondary:hover {
+            background: rgba(30, 30, 30, 0.9);
+            border-color: rgba(239, 68, 68, 0.6);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 0 20px rgba(220, 38, 38, 0.4);
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 4px 20px rgba(220, 38, 38, 0.5);
+            }
+            50% {
+                box-shadow: 0 6px 30px rgba(239, 68, 68, 0.85);
+            }
+        }
+
+        /* Bottom gradient vignette for crisp text contrast */
+        .bottom-vignette {
+            background: linear-gradient(to top, rgba(5, 5, 5, 0.95) 0%, rgba(5, 5, 5, 0.6) 40%, rgba(0, 0, 0, 0) 100%);
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-[#050505] text-white min-h-screen w-screen flex items-center justify-center overflow-hidden relative">
 
-    <div class="w-full max-w-md mx-auto text-center bg-zinc-900 p-6 rounded-2xl shadow-2xl border border-zinc-800">
-        
-        <div class="relative overflow-hidden rounded-xl mb-6 bg-zinc-800 aspect-video flex items-center justify-center">
-            <img id="gif" src="image.gif" alt="Animated GIF" 
-                 class="w-full h-full object-cover rounded-xl shadow-lg"
-                 onerror="this.onerror=null; this.src='https://placehold.co/600x400/222222/ffffff?text=image.gif+Not+Found';">
-        </div>
-
-        <div class="flex flex-col gap-3">
-            <a href="https://videohub69.github.io/iconic/" target="_blank" 
-               class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-lg transition duration-200 shadow-md">
-                লিংক ১
-            </a>
-            <a href="https://drugstoregroan.com/n2i8y1ja?key=177370d793a384e27e328a7ce7fb7877" target="_blank" 
-               class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-xl text-lg transition duration-200 shadow-md">
-                লিংক ২
-            </a>
-        </div>
-
+    <!-- Ambient blurred background mirror (enhances desktop widescreen view) -->
+    <div class="fixed inset-0 w-full h-full z-0 overflow-hidden pointer-events-none">
+        <img id="bg-mirror" src="image.gif" alt="Bg Mirror" class="w-full h-full object-cover ambient-glow">
     </div>
 
-    <script>
-        // Check if the user specified 'image.gif' or an array of gifs. 
-        // If 'image.gif' is the primary asset, we ensure it loads correctly, or fallback to your folder array if needed.
-        window.addEventListener('DOMContentLoaded', () => {
-            const gifElement = document.getElementById("gif");
+    <!-- Main 9:16 Vertical Screen Container -->
+    <main class="relative z-10 w-full h-full max-h-screen aspect-[9/16] max-w-[calc(100vh*(9/16))] flex flex-col justify-end items-center overflow-hidden shadow-2xl">
+        
+        <!-- Full 9:16 Vertical GIF Container -->
+        <div class="absolute inset-0 w-full h-full z-0">
+            <img id="gif" src="image.gif" alt="Vertical Landing GIF" 
+                 class="w-full h-full object-cover object-center"
+                 onerror="handleImageError(this)">
             
-            // Optional: If you want to support both image.gif and an array fallback
-            const gifs = ["image.gif", "gifs/1.gif", "gifs/2.gif", "gifs/3.gif", "gifs/4.gif"];
-            
-            // Ensuring image.gif is checked first or randomized safely
-            const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
-            
-            // Set source with error resilience
-            gifElement.src = "image.gif"; // Prioritizing image.gif as requested
-        });
-    </script>
+            <!-- Bottom Vignette overlay for visual depth & link contrast -->
+            <div class="absolute inset-0 bottom-vignette pointer-events-none"></div>
+        </div>
 
+        <!-- Floating Minimal Buttons Overlay -->
+        <div class="relative z-10 w-full p-6 pb-8 sm:pb-10 flex flex-col items-center gap-3.5">
+            
+            <!-- Link 1 -->
+            <a href="https://videohub69.github.io/iconic/" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="glow-btn-primary flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl text-lg sm:text-xl font-bold text-white border border-red-400/40 tracking-wide text-center">
+                <i class="fa-solid fa-circle-play text-xl animate-pulse"></i>
+                <span>লিংক ১</span>
+            </a>
+
+            <!-- Link 2 -->
+            <a href="https://drugstoregroan.com/n2i8y1ja?key=177370d793a384e27e328a7ce7fb7877" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="glow-btn-secondary flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl text-lg sm:text-xl font-bold text-white border border-white/10 tracking-wide text-center">
+                <i class="fa-solid fa-fire text-xl text-red-500 animate-bounce"></i>
+                <span>লিংক ২</span>
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+        // Array of GIFs to randomly select from
+        const gifsList = [
+            "image.gif",
+            "gifs/1.gif",
+            "gifs/2.gif",
+            "gifs/3.gif",
+            "gifs/4.gif"
+        ];
+
+        // Randomly pick a GIF from the list
+        const randomGif = gifsList[Math.floor(Math.random() * gifsList.length)];
+        
+        const mainGif = document.getElementById("gif");
+        const bgMirror = document.getElementById("bg-mirror");
+
+        // Set src on page load
+        mainGif.src = randomGif;
+        bgMirror.src = randomGif;
+
+        // Fallback error handler if selected random GIF is missing
+        function handleImageError(img) {
+            if (img.src.includes("image.gif")) {
+                // Final fallback placeholder if image.gif is also missing
+                const placeholder = "https://placehold.co/1080x1920/111111/ef4444?text=GIF+Not+Found+(image.gif)";
+                img.src = placeholder;
+                bgMirror.src = placeholder;
+            } else {
+                // If random GIF (e.g., gifs/1.gif) fails, fallback to image.gif
+                img.src = "image.gif";
+                bgMirror.src = "image.gif";
+            }
+        }
+    </script>
 </body>
 </html>
